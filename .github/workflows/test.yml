@@ -12,7 +12,7 @@ jobs:
           python-version: "3.8"
       - uses: actions/checkout@v2
       - run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u ne-sachirou --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u c4se-jp --password-stdin
           docker-compose pull web || true
           ./tasks.py build test
           docker-compose push web

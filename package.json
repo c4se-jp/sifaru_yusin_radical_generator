@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ne-sachirou/sifaru_yusin_radical_generator.git"
+    "url": "git+https://github.com/c4se-jp/sifaru_yusin_radical_generator.git"
   },
   "author": "ne_Sachirou <utakata.c4se@gmail.com>",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/ne-sachirou/sifaru_yusin_radical_generator/issues"
+    "url": "https://github.com/c4se-jp/sifaru_yusin_radical_generator/issues"
   },
-  "homepage": "https://github.com/ne-sachirou/sifaru_yusin_radical_generator#readme",
+  "homepage": "https://github.com/c4se-jp/sifaru_yusin_radical_generator#readme",
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/plugin-proposal-class-properties": "^7.12.13",

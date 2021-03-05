@@ -5,11 +5,11 @@ services:
   web:
     build:
       cache_from:
-        - docker.pkg.github.com/ne-sachirou/sifaru_yusin_radical_generator/sifaru_yusin_radical_generator-web:latest
+        - docker.pkg.github.com/c4se-jp/sifaru_yusin_radical_generator/sifaru_yusin_radical_generator-web:latest
       context: .
       dockerfile: Dockerfile
     depends_on: [web-src]
-    image: docker.pkg.github.com/ne-sachirou/sifaru_yusin_radical_generator/sifaru_yusin_radical_generator-web:latest
+    image: docker.pkg.github.com/c4se-jp/sifaru_yusin_radical_generator/sifaru_yusin_radical_generator-web:latest
     logging:
       options:
         max-size: "10m"
