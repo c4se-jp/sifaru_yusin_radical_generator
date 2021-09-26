@@ -122,7 +122,7 @@ def build():
         )
     with docker() as _run:
         _run("sh -ex -c {:s}".format(quote(r"cd sifaru_yusin && java -cp /root/antlr-4.jar:$CLASSPATH org.antlr.v4.Tool -Dlanguage=JavaScript DekuRule.g4")))
-        _run("poetry run npx webpack --config webpack.prod.js")
+        _run("pipenv run npx webpack --config webpack.prod.js")
 
 
 @task
@@ -141,7 +141,7 @@ def format():
     """Format code."""
     run(r"ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}")
     with docker() as _run:
-        _run("poetry run black main.py sifaru_yusin")
+        _run("pipenv run black main.py sifaru_yusin")
         _run("npx prettier --write *.js")
         _run("npx prettier --write *.json")
         _run("npx prettier --write *.md")
@@ -173,7 +173,7 @@ def resync():
 def sh():
     """Run shell in a Docker container."""
     with docker() as _run:
-        _run("sh")
+        _run("bash")
 
 
 @task
@@ -197,19 +197,19 @@ def test():
            """
         )
     with docker() as _run:
-        _run("poetry check")
+        _run("pipenv check")
         _run("npm audit")
         # NOTE: Broken on GitHub Actions with unknown reasons.
         # _run(
         #     "sh -eux -c {:s}".format(
         #         quote(
-        #             r"ag --hidden -g \.ya?ml$ | xargs -t poetry run yamllint"
+        #             r"ag --hidden -g \.ya?ml$ | xargs -t pipenv run yamllint"
         #         )
         #     )
         # )
-        _run("poetry run black --check main.py sifaru_yusin")
-        _run("poetry run flake8 main.py sifaru_yusin")
-        # _run("poetry run mypy main.py")
+        _run("pipenv run black --check main.py sifaru_yusin")
+        _run("pipenv run flake8 main.py sifaru_yusin")
+        # _run("pipenv run mypy main.py")
 
 
 @task
@@ -220,7 +220,7 @@ def upgrade():
         _run("npm install")
         _run("npm audit fix")
         _run("npm fund")
-        _run("poetry update")
+        _run("pipenv update -d --pre")
 
 
 if __name__ == "__main__":

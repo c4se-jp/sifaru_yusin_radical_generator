@@ -7,14 +7,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: "3.9"
       - uses: actions/checkout@v2
       - run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u c4se-jp --password-stdin
-          docker-compose pull web || true
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u c4se-jp --password-stdin
+          docker compose pull web || true
           ./tasks.py build test
-          docker-compose push web
+          docker compose push web
         env:
-          DOCKER_BUILDKIT: 1
+          COMPOSE_DOCKER_CLI_BUILD: "1"
+          DOCKER_BUILDKIT: "1"

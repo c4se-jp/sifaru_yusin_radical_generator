@@ -1,37 +1,38 @@
-FROM python:3.7-alpine
+FROM python:3.9-slim
 
-SHELL ["/bin/ash", "-ex", "-o", "pipefail", "-c"]
+SHELL ["/bin/bash", "-ex", "-o", "pipefail", "-c"]
 
 WORKDIR /mnt
 VOLUME /mnt
 
 EXPOSE 5000
 
-ENV PATH=/root/.poetry/bin:$PATH
+ENV PATH=/root/.local/bin:$PATH
 
-RUN apk add --no-cache -t .build-deps \
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
     curl \
- && apk add --no-cache -t .runtime-deps \
-    build-base \
-    git \
     inotify-tools \
-    libffi-dev \
-    linux-headers \
-    nodejs \
-    npm \
-    openjdk11-jre \
-    openssl-dev \
-    pcre-dev \
-    python3-dev \
+    openjdk-17-jre \
     rsync \
-    the_silver_searcher \
- && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python \
+    silversearcher-ag \
+ && curl -sL https://deb.nodesource.com/setup_16.x | bash -ex \
+ && apt-get install -y --no-install-recommends \
+    nodejs \
+ && pip install --no-cache-dir --user pipenv \
  && curl -sSL https://www.antlr.org/download/antlr-4.9-complete.jar > /root/antlr-4.jar \
- && apk del --purge .build-deps \
- && rm -rf /var/cache/apk/*
+ && apt-get purge -y \
+    curl \
+ && apt-get autoremove -y \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-COPY package.json package-lock.json poetry.lock poetry.toml pyproject.toml ./
-RUN poetry install \
+COPY package-lock.json \
+     package.json \
+     Pipfile \
+     Pipfile.lock \
+     ./
+RUN pipenv sync -d --pre \
  && npm ci \
  && mv node_modules /tmp
 
