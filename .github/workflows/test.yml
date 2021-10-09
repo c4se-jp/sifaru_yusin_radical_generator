@@ -14,8 +14,25 @@ jobs:
         with:
           python-version: "3.10"
       - uses: actions/checkout@v2
+      - name: Cache Node.js
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Cache Python
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ hashFiles('Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
       - name: Setup
         run: |
+          pip install --user pipenv
           pipenv sync -d --pre
           npm ci
       - name: Test
