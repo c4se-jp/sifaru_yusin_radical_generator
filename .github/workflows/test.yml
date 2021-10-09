@@ -7,15 +7,22 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
       - uses: actions/setup-python@v2
         with:
           python-version: "3.10"
       - uses: actions/checkout@v2
-      - run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u c4se-jp --password-stdin
-          docker-compose pull web || true
-          ./tasks.py build test
-          docker-compose push web
-        env:
-          COMPOSE_DOCKER_CLI_BUILD: "1"
-          DOCKER_BUILDKIT: "1"
+      - name: Setup
+        run: |
+          pipenv sync -d --pre
+          npm ci
+      - name: Test
+        run: |
+          pipenv check
+          npm audit
+          git ls-files | grep -E '\.y(a?)ml$' | xargs -t pipenv run yamllint
+          pipenv run black --check main.py sifaru_yusin
+          pipenv run flake8 main.py sifaru_yusin
+          pipenv run mypy main.py || true
