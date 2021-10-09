@@ -207,17 +207,16 @@ def test():
     with docker() as _run:
         _run("pipenv check")
         _run("npm audit")
-        # NOTE: Broken on GitHub Actions with unknown reasons.
-        # _run(
-        #     "sh -eux -c {:s}".format(
-        #         quote(
-        #             r"ag --hidden -g \.ya?ml$ | xargs -t pipenv run yamllint"
-        #         )
-        #     )
-        # )
+        _run(
+            "sh -eux -c {:s}".format(
+                quote(
+                    r"ag --hidden -g \.ya?ml$ | xargs -t pipenv run yamllint"
+                )
+            )
+        )
         _run("pipenv run black --check main.py sifaru_yusin")
         _run("pipenv run flake8 main.py sifaru_yusin")
-        # _run("pipenv run mypy main.py")
+        _run("pipenv run mypy main.py || true")
 
 
 @task

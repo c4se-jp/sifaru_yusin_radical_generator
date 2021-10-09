@@ -1,14 +1,19 @@
 ---
-name: test
+name: deploy
 
 "on":
-  - pull_request
-  - push
+  push:
+    branches:
+      - main
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: "17"
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
@@ -37,11 +42,18 @@ jobs:
           pip install --user pipenv
           pipenv sync -d --pre
           npm ci
-      - name: Test
+          sudo apt-get install curl
+          curl -sSL https://www.antlr.org/download/antlr-4.9-complete.jar > ~/antlr-4.jar
+      - name: Build
         run: |
-          pipenv check
-          npm audit
-          git ls-files | grep -E '\.y(a?)ml$' | xargs -t pipenv run yamllint
-          pipenv run black --check main.py sifaru_yusin
-          pipenv run flake8 main.py sifaru_yusin
-          pipenv run mypy main.py || true
+          rm -fv docs/main.js* sifaru_yusin/DekuRule*.js sifaru_yusin/*.interp sifaru_yusin/*.tokens
+          (cd sifaru_yusin && java -cp ~/antlr-4.jar:$CLASSPATH org.antlr.v4.Tool -Dlanguage=JavaScript DekuRule.g4)
+          pipenv run npx webpack --config webpack.prod.js
+      # - uses: JamesIves/github-pages-deploy-action@4.1.5
+      #   with:
+      #     branch: main
+      #     folder: docs
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
