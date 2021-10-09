@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      property="og:description"
+      content="yUraru語の主要な祖語の一つである所の、kAtoriruixis北方で使はれる白色語の語根を生成する"
+    />
+    <meta property="og:locale" content="ja_JP" />
+    <meta
+      property="og:title"
+      content="白色語語根生成器 (sifarU yUsin ru dEku kekurIa)"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://c4se-jp.github.io/sifaru_yusin_radical_generator/"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:description"
+      content="yUraru語の主要な祖語の一つである所の、kAtoriruixis北方で使はれる白色語の語根を生成する"
+    />
+    <meta name="twitter:site" content="@ta_haruna" />
+    <meta
+      name="twitter:title"
+      content="白色語語根生成器 (sifarU yUsin ru dEku kekurIa)"
+    />
+    <title>白色語語根生成器 (sifarU yUsin ru dEku kekurIa)</title>
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div>
+      <a href="https://github.com/c4se-jp/sifaru_yusin_radical_generator"
+        >Source code on GitHub</a
+      >
+    </div>
+    <div>
+      <input id="dEku_rules__toggle" type="checkbox" />
+      <h1>白色語語根生成器 (sifarU yUsin ru dEku kekurIa)</h1>
+      <button id="kekurE_dEku">生成する</button>
+      <label for="dEku_rules__toggle" id="dEku_rules__toggle_label"
+        >語根の規則</label
+      >
+      <form id="dEku_rules">
+        <textarea id="dEku_rules__textarea"></textarea>
+        <input type="reset" value="規則を規定のものに戻す" />
+        <div id="dEku_rules__error"></div>
+      </form>
+      <ul id="dEkuga"></ul>
+    </div>
+  </body>
+</html>
