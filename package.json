@@ -22,7 +22,7 @@
   "homepage": "https://github.com/c4se-jp/sifaru_yusin_radical_generator#readme",
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
     "@babel/preset-env": "^7.15.8",
     "antlr4": "^4.9.2",
     "babel-loader": "^8.2.3",
