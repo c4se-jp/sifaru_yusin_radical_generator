@@ -116,7 +116,7 @@ def within_wsl() -> bool:
 def build():
     """Build stuffs."""
     if not within_docker():
-        run(f"{docker_compose_exe()} pull web-src")
+        run(f"{docker_compose_exe()} pull --ignore-pull-failures web-src")
         run(
             rf"""
             {docker_compose_exe()} build \
