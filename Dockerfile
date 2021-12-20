@@ -16,11 +16,11 @@ RUN apt-get update \
     openjdk-17-jre \
     rsync \
     silversearcher-ag \
- && curl -sL https://deb.nodesource.com/setup_16.x | bash -ex \
+ && curl -fsL https://deb.nodesource.com/setup_16.x | bash -ex \
  && apt-get install -y --no-install-recommends \
     nodejs \
  && pip install --no-cache-dir --user pipenv \
- && curl -sSL https://www.antlr.org/download/antlr-4.9-complete.jar > /root/antlr-4.jar \
+ && curl -fsSL https://www.antlr.org/download/antlr-4.9-complete.jar > /root/antlr-4.jar \
  && apt-get purge -y \
     curl \
  && apt-get autoremove -y \
