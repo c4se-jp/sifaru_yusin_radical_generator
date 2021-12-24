@@ -19,24 +19,17 @@ jobs:
         with:
           cache: npm
           node-version: "16"
+      - name: Install pipenv
+        run: pip install --user pipenv
       - uses: actions/setup-python@v2
         with:
+          cache: pipenv
           python-version: "3.10"
-      - name: Cache Python
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-python-${{ hashFiles('Pipfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-python-
       - name: Setup
         run: |
-          pip install --user pipenv
-          pipenv sync -d --pre
           npm ci
-          sudo apt-get install curl
-          curl -sSL https://www.antlr.org/download/antlr-4.9-complete.jar > ~/antlr-4.jar
+          sudo apt-get install -y --no-install-recommends curl
+          curl -fsSL https://www.antlr.org/download/antlr-4.9-complete.jar > ~/antlr-4.jar
       - name: Build
         run: |
           rm -fv docs/main.js* sifaru_yusin/DekuRule*.js sifaru_yusin/*.interp sifaru_yusin/*.tokens
