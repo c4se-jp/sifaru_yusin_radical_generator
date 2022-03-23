@@ -30,9 +30,10 @@ jobs:
           dockerfile: Dockerfile
       - name: Test
         run: |
-          pipenv check
-          npm audit
-          git ls-files | grep -E '\.y(a?)ml$' | xargs -t pipenv run yamllint
-          pipenv run black --check main.py sifaru_yusin
-          pipenv run flake8 main.py sifaru_yusin
-          pipenv run mypy main.py || true
+          #pipenv check
+          #npm audit
+          #git ls-files | grep -E '\.y(a?)ml$' | xargs -t pipenv run yamllint
+          #pipenv run black --check main.py sifaru_yusin
+          #pipenv run flake8 main.py sifaru_yusin
+          #pipenv run mypy main.py || true
+          pipenv run python tasks.py test
