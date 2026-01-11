@@ -1,0 +1,22 @@
+{
+  "name": "sifaru_yusin_radical_generator",
+  "private": true,
+  "description": "白色語語根生成器 (sifarU yUsin ru dEku kekurIa)",
+  "license": "Unlicense",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run -ws build",
+    "lint": "npm run -ws lint",
+    "test": "npm run -ws test",
+    "test:gha": "yamllint .github/workflows/ && actionlint && ghalint run && zizmor .",
+    "format": "prettier --write \"packages/**/*.ts\" \"packages/**/*.tsx\""
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  }
+}
