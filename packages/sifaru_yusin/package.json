@@ -16,8 +16,9 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "build": "npm run build:antlr4 && vite build && tsc -p tsconfig.build.json",
     "build:antlr4": "java -jar antlr-4.13.2-complete.jar -Dlanguage=TypeScript src/DekuRule.g4",
+    "clean": "rm -frv dist src/DekuRule*.ts src/*.interp src/*.tokens",
     "lint": "tsc -p tsconfig.json",
     "test": "node -e \"console.log('no tests')\""
   },

@@ -9,9 +9,11 @@
   ],
   "scripts": {
     "build": "npm run -ws build",
+    "clean": "npm run clean:root && npm run -ws clean",
+    "clean:root": "rm -frv dist/",
     "lint": "npm run -ws lint",
+    "lint:gha": "yamllint .github/workflows/ && actionlint && ghalint run && zizmor .",
     "test": "npm run -ws test",
-    "test:gha": "yamllint .github/workflows/ && actionlint && ghalint run && zizmor .",
     "format": "prettier --write \"packages/**/*.ts\""
   },
   "devDependencies": {
