@@ -8,12 +8,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run -ws build",
-    "clean": "npm run clean:root && npm run -ws clean",
+    "build": "npm run --workspaces build",
+    "clean": "npm run clean:root && npm run --workspaces clean",
     "clean:root": "rm -frv dist/",
-    "lint": "npm run -ws lint",
+    "lint": "npm run --workspaces lint",
     "lint:gha": "yamllint .github/workflows/ && actionlint && ghalint run && zizmor .",
-    "test": "npm run -ws test",
+    "test": "npm run --workspaces test",
     "format": "prettier --write \"packages/**/*.ts\""
   },
   "devDependencies": {
