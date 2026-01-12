@@ -1,0 +1,39 @@
+{
+  "name": "sifaru_yusin_radical_generator",
+  "version": "1.0.0",
+  "description": "白色語語根生成器 (sifarU yUsin ru dEku kekurIa)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "make start",
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c4se-jp/sifaru_yusin_radical_generator.git"
+  },
+  "author": "ne_Sachirou <utakata.c4se@gmail.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/c4se-jp/sifaru_yusin_radical_generator/issues"
+  },
+  "homepage": "https://github.com/c4se-jp/sifaru_yusin_radical_generator#readme",
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.19.0",
+    "antlr4": "4.11.0",
+    "babel-loader": "^8.2.5",
+    "npm-check-updates": "^16.1.2",
+    "prettier": "^2.7.1",
+    "transcrypt-loader": "^1.0.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "browser": {
+    "fs": false
+  }
+}

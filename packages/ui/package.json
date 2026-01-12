@@ -1,0 +1,16 @@
+{
+  "name": "ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "clean": "node -e \"console.log('no clean step')\"",
+    "dev": "vite",
+    "lint": "tsc -p tsconfig.json",
+    "test": "node -e \"console.log('no tests')\""
+  },
+  "dependencies": {
+    "sifaru_yusin": "file:../sifaru_yusin"
+  }
+}

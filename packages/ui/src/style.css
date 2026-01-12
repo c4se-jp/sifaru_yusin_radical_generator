@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+#dEku_rules {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+#dEku_rules__error {
+  color: #f03030;
+  white-space: pre;
+}
+
+#dEku_rules__textarea {
+  height: 24em;
+  width: 100%;
+}
+
+#dEku_rules__toggle {
+  display: none;
+}
+
+#dEku_rules__toggle:checked ~ #dEku_rules {
+  max-height: 1000px;
+}
+
+#dEku_rules__toggle:checked ~ #dEku_rules__toggle_label::after {
+  content: " --";
+}
+
+#dEku_rules__toggle_label {
+  background: #e9e9f0;
+  border: 1px solid #c9c9c0;
+  cursor: pointer;
+  padding: 1.5pt;
+}
+
+#dEku_rules__toggle_label:hover {
+  background: #f0f0fc;
+  border: 1px solid #bfbfb9;
+}
+
+#dEku_rules__toggle_label::after {
+  content: " +";
+}

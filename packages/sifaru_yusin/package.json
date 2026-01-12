@@ -1,0 +1,29 @@
+{
+  "name": "sifaru_yusin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "npm run build:antlr4 && vite build && npm run build:tsc",
+    "build:antlr4": "java -jar antlr-4.13.2-complete.jar -Dlanguage=TypeScript src/DekuRule.g4",
+    "build:tsc": "tsc -p tsconfig.build.json",
+    "clean": "rm -frv dist src/DekuRule*.ts src/*.interp src/*.tokens",
+    "lint": "tsc -p tsconfig.json",
+    "test": "node -e \"console.log('no tests')\""
+  },
+  "dependencies": {
+    "antlr4": "^4.13.2"
+  }
+}
