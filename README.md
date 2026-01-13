@@ -1,5 +1,3 @@
-![test](https://github.com/c4se-jp/sifaru_yusin_radical_generator/workflows/test/badge.svg)
-
 # 白色語語根生成器 (sifarU yUsin ru dEku kekurIa)
 
 https://c4se-jp.github.io/sifaru_yusin_radical_generator/
@@ -16,8 +14,12 @@ https://c4se-jp.github.io/sifaru_yusin_radical_generator/
 - sifarU yUsin 白色語
 - yUsin 讀み書き。言語。言葉
 
-```sh
-./tasks.py help
-./tasks.py clean build sh
-./tasks.py start
-```
+## 開發
+
+開發 server
+
+$ npm run -w ui dev
+
+build
+
+$ npm run build && npm run format
