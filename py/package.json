@@ -1,7 +1,7 @@
 {
   "name": "sifaru_yusin_radical_generator",
   "version": "1.0.0",
-  "description": "白色語語根生成器 (sifarU yUsin ru dEku kekurIa)",
+  "description": "白色語語根生成器 (sifarU yUsin ru dEku kekurIa)",
   "main": "index.js",
   "directories": {
     "doc": "docs"

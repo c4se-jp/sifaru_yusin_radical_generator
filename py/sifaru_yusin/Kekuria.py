@@ -1,9 +1,9 @@
-"""語根生成器。dEku kekurIa."""
+"""語根生成器。dEku kekurIa."""
 from sifaru_yusin.RuleDefinitions import RuleDefinitions, Rule
 
 
 class Kekuria:
-    """語根生成器。dEku kekurIa."""
+    """語根生成器。dEku kekurIa."""
 
     def __init__(self, rule_definitions: RuleDefinitions):
         """Initialize kekuria."""
