@@ -19,7 +19,7 @@
     "build": "npm run build:antlr4 && vite build && npm run build:tsc",
     "build:antlr4": "java -jar antlr-4.13.2-complete.jar -Dlanguage=TypeScript src/DekuRule.g4",
     "build:tsc": "tsc -p tsconfig.build.json",
-    "clean": "rm -frv dist src/DekuRule*.ts src/*.interp src/*.tokens",
+    "clean": "rimraf dist src/DekuRule*.ts src/*.interp src/*.tokens",
     "lint": "tsc -p tsconfig.json",
     "test": "node -e \"console.log('no tests')\""
   },
