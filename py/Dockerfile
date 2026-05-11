@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.14-slim
 
 SHELL ["/bin/bash", "-ex", "-o", "pipefail", "-c"]
 
@@ -13,14 +13,14 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
     curl \
     inotify-tools \
-    openjdk-17-jre \
+    openjdk-25-jre \
     rsync \
     silversearcher-ag \
- && curl -fsL https://deb.nodesource.com/setup_16.x | bash -ex \
+ && curl -fsL https://deb.nodesource.com/setup_24.x | bash -ex \
  && apt-get install -y --no-install-recommends \
     nodejs \
  && pip install --no-cache-dir --user pipenv \
- && curl -fsSL https://www.antlr.org/download/antlr-4.9-complete.jar > /root/antlr-4.jar \
+ && curl -fsSL https://www.antlr.org/download/antlr-4.13.2-complete.jar > /root/antlr-4.jar \
  && apt-get purge -y \
     curl \
  && apt-get autoremove -y \
