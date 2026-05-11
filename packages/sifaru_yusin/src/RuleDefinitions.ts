@@ -3,11 +3,7 @@ import type { Kekuria } from "./Kekuria.js";
 export type WordNameRef = { kind: "WordName"; value: string };
 
 const isWordNameRef = (value: unknown): value is WordNameRef => {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    (value as WordNameRef).kind === "WordName"
-  );
+  return typeof value === "object" && value !== null && (value as WordNameRef).kind === "WordName";
 };
 
 export abstract class Rule {
@@ -49,8 +45,7 @@ export class ChoiceRule extends Rule {
   }
 
   kekure(kekuria: Kekuria): string {
-    const gauge =
-      this.items.reduce((sum, item) => sum + item.weight, 0) * Math.random();
+    const gauge = this.items.reduce((sum, item) => sum + item.weight, 0) * Math.random();
     let meter = 0;
     for (const item of this.items) {
       meter += item.weight;
@@ -73,9 +68,7 @@ export class DifferenceRule extends Rule {
   }
 
   kekure(kekuria: Kekuria): string {
-    const lhsRule = isWordNameRef(this.lhs)
-      ? kekuria.get_rule(this.lhs.value)
-      : this.lhs;
+    const lhsRule = isWordNameRef(this.lhs) ? kekuria.get_rule(this.lhs.value) : this.lhs;
 
     if (!(lhsRule instanceof ChoiceRule)) {
       throw new Error("Can't get a difference except from a ChoiceRule.");
@@ -94,26 +87,20 @@ export class DifferenceRule extends Rule {
     if (rhsRule instanceof ChoiceRule) {
       rhsValues = rhsRule.items.map((item) => {
         if (!(item.rule instanceof StringRule)) {
-          throw new Error(
-            "Can't get a difference by a ChoiceRule of not StringRule-s.",
-          );
+          throw new Error("Can't get a difference by a ChoiceRule of not StringRule-s.");
         }
         return item.rule.value;
       });
     } else if (rhsRule instanceof StringRule) {
       rhsValues = [rhsRule.value];
     } else {
-      throw new Error(
-        "Can't get a difference except by a ChoiceRule or a StringRule.",
-      );
+      throw new Error("Can't get a difference except by a ChoiceRule or a StringRule.");
     }
 
     const newItems: ChoiceRuleItem[] = [];
     for (const item of lhsRule.items) {
       if (!(item.rule instanceof StringRule)) {
-        throw new Error(
-          "Can't get a difference except from a ChoiceRule of StringRule-s.",
-        );
+        throw new Error("Can't get a difference except from a ChoiceRule of StringRule-s.");
       }
       if (!rhsValues.includes(item.rule.value)) {
         newItems.push(item);
