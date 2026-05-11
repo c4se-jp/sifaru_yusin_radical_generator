@@ -38,20 +38,14 @@ class Visitor {
   visit(node: unknown): unknown {
     if (node instanceof RootContext) return this.visitRoot(node);
     if (node instanceof ChoiceWordContext) return this.visitChoiceWord(node);
-    if (node instanceof DifferenceLhsContext)
-      return this.visitDifferenceLhs(node);
-    if (node instanceof DifferenceRhsContext)
-      return this.visitDifferenceRhs(node);
-    if (node instanceof DifferenceWordContext)
-      return this.visitDifferenceWord(node);
+    if (node instanceof DifferenceLhsContext) return this.visitDifferenceLhs(node);
+    if (node instanceof DifferenceRhsContext) return this.visitDifferenceRhs(node);
+    if (node instanceof DifferenceWordContext) return this.visitDifferenceWord(node);
     if (node instanceof ElementWordContext) return this.visitElementWord(node);
-    if (node instanceof ReferenceWordContext)
-      return this.visitReferenceWord(node);
-    if (node instanceof SequenceWordContext)
-      return this.visitSequenceWord(node);
+    if (node instanceof ReferenceWordContext) return this.visitReferenceWord(node);
+    if (node instanceof SequenceWordContext) return this.visitSequenceWord(node);
     if (node instanceof WordContext) return this.visitWord(node);
-    if (node instanceof WordDefinitionContext)
-      return this.visitWordDefinition(node);
+    if (node instanceof WordDefinitionContext) return this.visitWordDefinition(node);
     throw new Error("Unknown rule context.");
   }
 

@@ -113,9 +113,9 @@ class DifferenceRule(Rule):
 
 class ReferenceRule(Rule):
     """
-    既に生成した文字列をrule名で參照する.
+    既に生成した文字列をrule名で參照する.
 
-    Rule名を指定して生成したものか、Rule名から引き算して生成したものを參照出來る.
+    Rule名を指定して生成したものか、Rule名から引き算して生成したものを參照出來る.
     """
 
     def __init__(self, rule_name: str, position: int):

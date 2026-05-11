@@ -43,10 +43,7 @@ const draw_error = (error: unknown): void => {
   });
 };
 
-const append_new_deku = (
-  listElement: HTMLUListElement,
-  newItemElement: HTMLLIElement,
-): void => {
+const append_new_deku = (listElement: HTMLUListElement, newItemElement: HTMLLIElement): void => {
   while (listElement.childElementCount >= MAX_DEKUGA_LENGTH) {
     listElement.removeChild(listElement.lastElementChild as Node);
   }
@@ -90,16 +87,11 @@ const on_dom_content_loaded = (): void => {
   const rulesForm = getElement<HTMLFormElement>("dEku_rules");
   rulesForm.addEventListener("reset", on_change_deku_rules_textarea);
 
-  const dekuRulesTextarea = getElement<HTMLTextAreaElement>(
-    "dEku_rules__textarea",
-  );
+  const dekuRulesTextarea = getElement<HTMLTextAreaElement>("dEku_rules__textarea");
   dekuRulesTextarea.defaultValue = state.dEku_rules.rules;
   dekuRulesTextarea.addEventListener("keyup", on_change_deku_rules_textarea);
 
-  getElement<HTMLButtonElement>("kekurE_dEku").addEventListener(
-    "click",
-    on_click_kekure_deku,
-  );
+  getElement<HTMLButtonElement>("kekurE_dEku").addEventListener("click", on_click_kekure_deku);
 
   window.setTimeout(() => {
     for (let i = 0; i < MAX_DEKUGA_LENGTH; i += 1) {

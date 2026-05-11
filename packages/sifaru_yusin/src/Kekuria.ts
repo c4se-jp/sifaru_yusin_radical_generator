@@ -13,9 +13,7 @@ export class Kekuria {
   }
 
   get_reference(ruleName: string, position: number): string {
-    return this.references.filter((reference) => reference[0] === ruleName)[
-      position
-    ][1];
+    return this.references.filter((reference) => reference[0] === ruleName)[position][1];
   }
 
   get_rule(ruleName: string): Rule {
