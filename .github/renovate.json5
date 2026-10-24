@@ -3,10 +3,19 @@
   extends: [":configMigration", "config:recommended"],
   ignorePaths: ["py/**"],
   labels: ["dependencies"],
-  minimumReleaseAge: "3 days",
+  minimumReleaseAge: "5 days",
+  packageRules: [
+    {
+      // patch ver.の通常updateはpull requestを作らない。security updateはvulnerabilityAlertsが別途pull requestを作る。
+      enabled: false,
+      matchUpdateTypes: ["patch"],
+    },
+  ],
   schedule: "after 10am and before 7pm every weekday",
   timezone: "Asia/Tokyo",
   vulnerabilityAlerts: {
+    // patch向けenabled: falseルールより優先されるため、security updateは明示的に有効にする。
+    enabled: true,
     labels: ["dependencies", "security"],
   },
 }
