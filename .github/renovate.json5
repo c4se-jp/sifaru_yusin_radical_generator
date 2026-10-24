@@ -3,7 +3,7 @@
   extends: [":configMigration", "config:recommended"],
   ignorePaths: ["py/**"],
   labels: ["dependencies"],
-  minimumReleaseAge: "3 days",
+  minimumReleaseAge: "5 days",
   packageRules: [
     {
       // patch ver.の通常updateはpull requestを作らない。security updateはvulnerabilityAlertsが別途pull requestを作る。
