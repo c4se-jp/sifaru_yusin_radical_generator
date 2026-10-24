@@ -6,6 +6,14 @@ name: main branch
       - main
 
 jobs:
+  gha-lint:
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+    # Keep ./ syntax until actionlint supports the $/ self-repository syntax.
+    uses: ./.github/workflows/run-lint-github-actions.yaml # zizmor: ignore[self-repository]
+
   deploy-pages:
     permissions:
       contents: read

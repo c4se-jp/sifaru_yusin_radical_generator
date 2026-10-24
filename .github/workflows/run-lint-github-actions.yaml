@@ -2,16 +2,7 @@
 name: Lint GitHub Actions
 
 "on":
-  pull_request:
-    paths:
-      - ".github/actions/**"
-      - ".github/workflows/**"
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/actions/**"
-      - ".github/workflows/**"
+  workflow_call:
 
 permissions: {}
 
