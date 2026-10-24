@@ -1,0 +1,35 @@
+---
+name: Lint GitHub Actions
+
+"on":
+  pull_request:
+    paths:
+      - ".github/actions/**"
+      - ".github/workflows/**"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/actions/**"
+      - ".github/workflows/**"
+
+permissions: {}
+
+jobs:
+  gha-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Lint GitHub Actions
+        uses: ne-sachirou/lint-gha-reviewdog@46ec1ff5e185ed4ef4c5ad62ad533e5df22b878d # v0.0.12
+        with:
+          github_token: ${{ github.token }}
